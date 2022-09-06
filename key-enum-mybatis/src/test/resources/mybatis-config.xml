@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <typeHandlers>
+        <typeHandler handler="com.github.lokic.keyenum.mybatis.typehandler.KeyEnumTypeHandler"
+                     javaType="com.github.lokic.keyenum.core.KeyEnum" />
+    </typeHandlers>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC">
+                <property name="" value="" />
+            </transactionManager>
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="org.h2.Driver" />
+                <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1" />
+                <property name="username" value="root" />
+                <property name="password" value="test" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="CrossingMapper.xml" />
+    </mappers>
+
+</configuration>
