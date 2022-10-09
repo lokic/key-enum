@@ -13,6 +13,7 @@
         <module>key-enum-core</module>
         <module>key-enum-mybatis</module>
         <module>key-enum-mapstruct</module>
+        <module>key-enum-jackson</module>
     </modules>
 
     <properties>
