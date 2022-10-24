@@ -6,10 +6,7 @@ import org.mapstruct.TargetType;
 public class KeyEnumConverter {
 
     public static <T extends Enum<T> & KeyEnum<T>> Integer convert(T keyEnum) {
-        if (keyEnum == null) {
-            return null;
-        }
-        return keyEnum.getKey();
+        return KeyEnum.getKey(keyEnum);
     }
 
     public static <T extends Enum<T> & KeyEnum<T>> T convert(@TargetType Class<T> enumType, Integer key) {
