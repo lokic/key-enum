@@ -4,7 +4,8 @@ import com.github.lokic.keyenum.core.KeyEnum;
 
 public enum TestEnum implements KeyEnum<TestEnum> {
     A(0),
-    B(1);
+    B(1),
+    D(3);
 
     private final int key;
 

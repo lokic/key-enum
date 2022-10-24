@@ -15,7 +15,6 @@ public class KeyEnumDeserializer<E extends Enum<E> & KeyEnum<E>> extends StdDese
 
     public KeyEnumDeserializer() {
         super((JavaType) null);
-
     }
 
     public KeyEnumDeserializer(JavaType valueType) {

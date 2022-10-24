@@ -26,6 +26,7 @@ public class KeyEnumDeserializerTest {
         String json1 = "{\"testEnum\":1}";
         String json2 = "{\"testEnum\":2}";
         String json3 = "{}";
+        String json4 = "{\"testEnum\":3}";
 
         TestConfigClazz t0 = mapper.readValue(json0, TestConfigClazz.class);
         Assert.assertEquals(TestEnum.A, t0.getTestEnum());
@@ -36,9 +37,11 @@ public class KeyEnumDeserializerTest {
         TestConfigClazz t2 = mapper.readValue(json2, TestConfigClazz.class);
         Assert.assertNull(t2.getTestEnum());
 
-
         TestConfigClazz t3 = mapper.readValue(json3, TestConfigClazz.class);
         Assert.assertNull(t3.getTestEnum());
+
+        TestAnnotationClazz t4 = mapper.readValue(json4, TestAnnotationClazz.class);
+        Assert.assertEquals(TestEnum.D, t4.getTestEnum());
 
     }
 
@@ -52,6 +55,7 @@ public class KeyEnumDeserializerTest {
         String json1 = "{\"testEnum\":1}";
         String json2 = "{\"testEnum\":2}";
         String json3 = "{}";
+        String json4 = "{\"testEnum\":3}";
 
         TestAnnotationClazz t0 = mapper.readValue(json0, TestAnnotationClazz.class);
         Assert.assertEquals(TestEnum.A, t0.getTestEnum());
@@ -62,9 +66,12 @@ public class KeyEnumDeserializerTest {
         TestAnnotationClazz t2 = mapper.readValue(json2, TestAnnotationClazz.class);
         Assert.assertNull(t2.getTestEnum());
 
-
         TestAnnotationClazz t3 = mapper.readValue(json3, TestAnnotationClazz.class);
         Assert.assertNull(t3.getTestEnum());
+
+        TestAnnotationClazz t4 = mapper.readValue(json4, TestAnnotationClazz.class);
+        Assert.assertEquals(TestEnum.D, t4.getTestEnum());
+
     }
 
 }

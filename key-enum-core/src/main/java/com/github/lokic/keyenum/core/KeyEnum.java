@@ -10,6 +10,14 @@ public interface KeyEnum<E extends Enum<E> & KeyEnum<E>> {
 
     int getKey();
 
+    static <T extends Enum<T> & KeyEnum<T>> Integer getKey(T enumObj) {
+        if (enumObj == null) {
+            return null;
+        } else {
+            return enumObj.getKey();
+        }
+    }
+
     static <T extends Enum<T> & KeyEnum<T>> T keyOf(Class<T> enumType, Integer key) {
         return getProperty(enumType).of(key);
     }
