@@ -3,14 +3,11 @@ package com.github.lokic.keyenum.fastjson.deserialize;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.parser.deserializer.ObjectDeserializer;
-import com.github.lokic.keyenum.core.KeyEnum;
 import com.github.lokic.keyenum.fastjson.TestAnnotationClazz;
 import com.github.lokic.keyenum.fastjson.TestConfigClazz;
 import com.github.lokic.keyenum.fastjson.TestEnum;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Objects;
 
 
 public class KeyEnumDeserializerTest {
@@ -42,7 +39,7 @@ public class KeyEnumDeserializerTest {
 
 
     @Test
-    public void deserialze_config() {
+    public void deserialze_general_config() {
         EnumDeserializerProvider enumDeserializerProvider = new EnumDeserializerProvider();
 
         ParserConfig config = new ParserConfig() {
@@ -51,7 +48,17 @@ public class KeyEnumDeserializerTest {
                 return enumDeserializerProvider.getEnumDeserializer(clazz);
             }
         };
+        deserialze_config(config);
+    }
 
+    @Test
+    public void deserialze_single_config() {
+        ParserConfig config = new ParserConfig();
+        config.putDeserializer(TestEnum.class, new KeyEnumDeserializer());
+        deserialze_config(config);
+    }
+
+    private void deserialze_config(ParserConfig config) {
         String json0 = "{\"testEnum\":0}";
         String json1 = "{\"testEnum\":1}";
         String json2 = "{\"testEnum\":2}";
@@ -73,6 +80,5 @@ public class KeyEnumDeserializerTest {
 
         TestConfigClazz t4 = JSON.parseObject(json4, TestConfigClazz.class, config);
         Assert.assertEquals(TestEnum.D, t4.getTestEnum());
-
     }
 }

@@ -7,14 +7,21 @@ import com.github.lokic.keyenum.fastjson2.TestEnum;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class KeyEnumSerializerTest {
 
     @Test
-    public void write_config() {
+    public void write_general_config() {
         JSON.register(new KeyEnumWriteModule());
+        write_config();
+    }
 
+    @Test
+    public void write_single_config() {
+        JSON.register(TestEnum.class, new KeyEnumSerializer<>());
+        write_config();
+    }
+
+    public void write_config() {
         String json0 = "{\"testEnum\":0}";
         String json1 = "{\"testEnum\":1}";
         String json2 = "{}";

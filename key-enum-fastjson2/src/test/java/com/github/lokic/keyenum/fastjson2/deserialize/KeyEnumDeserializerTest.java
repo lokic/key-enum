@@ -10,9 +10,18 @@ import org.junit.Test;
 public class KeyEnumDeserializerTest {
 
     @Test
-    public void readObject_config() {
+    public void readObject_general_config() {
         JSON.register(new KeyEnumReaderModule());
+        readObject_config();
+    }
 
+    @Test
+    public void readObject_single_config() {
+        JSON.register(TestEnum.class, new KeyEnumDeserializer<>());
+        readObject_config();
+    }
+
+    private void readObject_config() {
         String json0 = "{\"testEnum\":0}";
         String json1 = "{\"testEnum\":1}";
         String json2 = "{\"testEnum\":2}";

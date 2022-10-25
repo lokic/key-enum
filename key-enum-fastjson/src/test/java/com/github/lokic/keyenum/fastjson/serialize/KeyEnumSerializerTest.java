@@ -1,20 +1,13 @@
 package com.github.lokic.keyenum.fastjson.serialize;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.parser.ParserConfig;
-import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.ObjectSerializer;
 import com.alibaba.fastjson.serializer.SerializeConfig;
-import com.github.lokic.keyenum.core.KeyEnum;
 import com.github.lokic.keyenum.fastjson.TestAnnotationClazz;
 import com.github.lokic.keyenum.fastjson.TestConfigClazz;
 import com.github.lokic.keyenum.fastjson.TestEnum;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.Objects;
 
 public class KeyEnumSerializerTest {
 
@@ -38,14 +31,24 @@ public class KeyEnumSerializerTest {
     }
 
     @Test
-    public void write_config() {
-        SerializeConfig config = new SerializeConfig(){
+    public void write_general_config() {
+        SerializeConfig config = new SerializeConfig() {
             @Override
             protected ObjectSerializer getEnumSerializer() {
                 return new DelegatingEnumSerializer();
             }
         };
+        write_config(config);
+    }
 
+    @Test
+    public void write_single_config() {
+        SerializeConfig config = new SerializeConfig();
+        config.put(TestEnum.class, new KeyEnumSerializer());
+        write_config(config);
+    }
+
+    private void write_config(SerializeConfig config) {
         String json0 = "{\"testEnum\":0}";
         String json1 = "{\"testEnum\":1}";
         String json2 = "{}";
@@ -61,4 +64,5 @@ public class KeyEnumSerializerTest {
         TestConfigClazz t2 = new TestConfigClazz();
         Assert.assertEquals(json2, JSON.toJSONString(t2, config));
     }
+
 }
