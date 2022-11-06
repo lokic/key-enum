@@ -16,6 +16,7 @@
         <module>key-enum-jackson</module>
         <module>key-enum-fastjson</module>
         <module>key-enum-fastjson2</module>
+        <module>key-enum-validator</module>
     </modules>
 
     <properties>
