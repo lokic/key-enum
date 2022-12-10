@@ -59,6 +59,26 @@
                 <artifactId>key-enum-mybatis</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.lokic</groupId>
+                <artifactId>key-enum-fastjson</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.lokic</groupId>
+                <artifactId>key-enum-fastjson2</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.lokic</groupId>
+                <artifactId>key-enum-jackson</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.lokic</groupId>
+                <artifactId>key-enum-validator</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
