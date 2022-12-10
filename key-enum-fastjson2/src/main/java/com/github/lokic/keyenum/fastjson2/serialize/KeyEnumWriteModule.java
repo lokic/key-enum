@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
 public class KeyEnumWriteModule implements ObjectWriterModule {
     @Override
     public ObjectWriter<?> getObjectWriter(Type objectType, Class objectClass) {
-        if(KeyEnumMatcher.isKeyEnum(objectClass)) {
+        if (KeyEnumMatcher.isKeyEnum(objectClass)) {
             return new KeyEnumSerializer<>();
         }
         return ObjectWriterModule.super.getObjectWriter(objectType, objectClass);

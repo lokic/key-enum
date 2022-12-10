@@ -14,19 +14,19 @@ public class KeyEnumDeserializer implements ObjectDeserializer {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T> T deserialze(DefaultJSONParser parser, Type type, Object o) {
+    public <E> E deserialze(DefaultJSONParser parser, Type type, Object o) {
         final JSONLexer lexer = parser.lexer;
 
         final int token = lexer.token();
-        if (token == JSONToken.LITERAL_INT) {
-            if (type instanceof Class) {
-                Class<T> keyEnumClass = (Class<T>) type;
-                int intValue = lexer.intValue();
-                return (T) KeyEnum.keyOf((Class) keyEnumClass, intValue);
-            }
-        } else if (token == JSONToken.NULL) {
+        if (token == JSONToken.NULL) {
             lexer.nextToken(JSONToken.COMMA);
             return null;
+        } else {
+            if (type instanceof Class) {
+                Class<E> keyEnumClass = (Class<E>) type;
+                Object value = parser.parse();
+                return (E) KeyEnum.keyOf((Class) keyEnumClass, value);
+            }
         }
         Object value = parser.parse();
         throw new JSONException("parse key enum " + type.getTypeName() + " error, value : " + value);
@@ -34,6 +34,6 @@ public class KeyEnumDeserializer implements ObjectDeserializer {
 
     @Override
     public int getFastMatchToken() {
-        return JSONToken.LITERAL_INT;
+        return 0;
     }
 }

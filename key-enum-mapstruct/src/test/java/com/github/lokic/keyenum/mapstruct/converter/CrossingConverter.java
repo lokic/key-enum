@@ -14,4 +14,10 @@ public interface CrossingConverter {
 
     @Mapping(target = "light", source = "light")
     CrossingDTO convert(Crossing crossing);
+
+    @Mapping(target = "light", source = "light")
+    Crossing2 convert(Crossing2DTO dto);
+
+    @Mapping(target = "light", source = "light")
+    Crossing2DTO convert(Crossing2 crossing);
 }

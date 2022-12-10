@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = KeyOfKeyEnumValidator.class)
 public @interface KeyOfKeyEnum {
 
-    Class<? extends KeyEnum<?>> keyEnumClass();
+    Class<? extends KeyEnum<?, ?>> keyEnumClass();
 
     String message() default "not a key of KeyEnum";
 

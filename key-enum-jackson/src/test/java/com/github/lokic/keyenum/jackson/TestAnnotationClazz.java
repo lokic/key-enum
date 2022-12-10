@@ -13,4 +13,7 @@ public class TestAnnotationClazz {
     @JsonSerialize(using = KeyEnumSerializer.class)
     private TestEnum testEnum;
 
+    @JsonDeserialize(using = KeyEnumDeserializer.class)
+    @JsonSerialize(using = KeyEnumSerializer.class)
+    private Test2Enum test2Enum;
 }

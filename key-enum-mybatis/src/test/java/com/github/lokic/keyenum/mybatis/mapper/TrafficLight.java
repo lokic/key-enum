@@ -2,7 +2,7 @@ package com.github.lokic.keyenum.mybatis.mapper;
 
 import com.github.lokic.keyenum.core.KeyEnum;
 
-public enum TrafficLight implements KeyEnum<TrafficLight> {
+public enum TrafficLight implements KeyEnum<Integer, TrafficLight> {
     RED(0),
     YELLOW(1),
     GREEN(2);
@@ -14,7 +14,7 @@ public enum TrafficLight implements KeyEnum<TrafficLight> {
     }
 
     @Override
-    public int getKey() {
+    public Integer getKey() {
         return key;
     }
 }

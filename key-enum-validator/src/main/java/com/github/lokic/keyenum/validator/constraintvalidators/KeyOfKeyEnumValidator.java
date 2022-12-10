@@ -6,9 +6,9 @@ import com.github.lokic.keyenum.validator.constraints.KeyOfKeyEnum;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class KeyOfKeyEnumValidator implements ConstraintValidator<KeyOfKeyEnum, Integer> {
+public class KeyOfKeyEnumValidator implements ConstraintValidator<KeyOfKeyEnum, Object> {
 
-    private Class<? extends KeyEnum<?>> keyEnumClass;
+    private Class<? extends KeyEnum<?, ?>> keyEnumClass;
 
     @Override
     public void initialize(KeyOfKeyEnum constraintAnnotation) {
@@ -16,7 +16,7 @@ public class KeyOfKeyEnumValidator implements ConstraintValidator<KeyOfKeyEnum, 
     }
 
     @Override
-    public boolean isValid(Integer key, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(Object key, ConstraintValidatorContext constraintValidatorContext) {
         if (key == null) {
             return true;
         } else {

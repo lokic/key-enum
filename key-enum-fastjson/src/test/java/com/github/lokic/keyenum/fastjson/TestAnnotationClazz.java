@@ -14,4 +14,10 @@ public class TestAnnotationClazz {
     )
     private TestEnum testEnum;
 
+    @JSONField(
+            deserializeUsing = KeyEnumDeserializer.class,
+            serializeUsing = KeyEnumSerializer.class
+    )
+    private Test2Enum test2Enum;
+
 }

@@ -1,8 +1,6 @@
 package com.github.lokic.keyenum.mybatis.typehandler;
 
-import com.github.lokic.keyenum.mybatis.mapper.TrafficLight;
-import com.github.lokic.keyenum.mybatis.mapper.Crossing;
-import com.github.lokic.keyenum.mybatis.mapper.CrossingMapper;
+import com.github.lokic.keyenum.mybatis.mapper.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
@@ -65,6 +63,18 @@ public class KeyEnumTypeHandlerTest {
     }
 
     @Test
+    public void test_selectCrossing2() {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            Crossing2Mapper mapper = sqlSession.getMapper(Crossing2Mapper.class);
+            Crossing2 c = mapper.selectById(1L);
+            Assert.assertEquals(TrafficLight2.YELLOW, c.getLight());
+
+            Crossing2 c2 = mapper.selectById(2L);
+            Assert.assertNull(c2.getLight());
+        }
+    }
+
+    @Test
     public void test_insertCrossing() {
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             CrossingMapper mapper = sqlSession.getMapper(CrossingMapper.class);
@@ -79,6 +89,21 @@ public class KeyEnumTypeHandlerTest {
         }
     }
 
+    @Test
+    public void test_insertCrossing2() {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            Crossing2Mapper mapper = sqlSession.getMapper(Crossing2Mapper.class);
+            Crossing2 c = new Crossing2();
+            c.setId(100L);
+            c.setLight(TrafficLight2.GREEN);
+            mapper.insert(c);
+
+            Crossing2 c2 = mapper.selectById(100L);
+            Assert.assertEquals(100L, (long) c2.getId());
+            Assert.assertEquals(TrafficLight2.GREEN, c2.getLight());
+        }
+    }
+
 
     @Test
     public void test_insertNullCrossing() {
@@ -90,6 +115,21 @@ public class KeyEnumTypeHandlerTest {
             mapper.insert(c);
 
             Crossing c2 = mapper.selectById(100L);
+            Assert.assertEquals(100L, (long) c2.getId());
+            Assert.assertNull(c2.getLight());
+        }
+    }
+
+    @Test
+    public void test_insertNullCrossing2() {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            Crossing2Mapper mapper = sqlSession.getMapper(Crossing2Mapper.class);
+            Crossing2 c = new Crossing2();
+            c.setId(100L);
+            c.setLight(null);
+            mapper.insert(c);
+
+            Crossing2 c2 = mapper.selectById(100L);
             Assert.assertEquals(100L, (long) c2.getId());
             Assert.assertNull(c2.getLight());
         }

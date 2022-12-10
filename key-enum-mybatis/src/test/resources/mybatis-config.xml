@@ -26,6 +26,7 @@
 
     <mappers>
         <mapper resource="CrossingMapper.xml" />
+        <mapper resource="Crossing2Mapper.xml" />
     </mappers>
 
 </configuration>

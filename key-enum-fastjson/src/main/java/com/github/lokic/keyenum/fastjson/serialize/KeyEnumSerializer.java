@@ -13,7 +13,7 @@ public class KeyEnumSerializer implements ObjectSerializer {
         if(object == null) {
             serializer.write(null);
         } else if (object instanceof KeyEnum) {
-            serializer.write(((KeyEnum<?>) object).getKey());
+            serializer.write(((KeyEnum<?, ?>) object).getKey());
         }
     }
 }

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>key-enum</artifactId>
         <groupId>com.github.lokic</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <fastjson2.version>2.0.16</fastjson2.version>
+        <fastjson2.version>2.0.20</fastjson2.version>
     </properties>
 
 

@@ -7,15 +7,15 @@ import com.github.lokic.keyenum.core.KeyEnum;
 
 import java.lang.reflect.Type;
 
-public class KeyEnumDeserializer<E extends Enum<E> & KeyEnum<E>> implements ObjectReader<E> {
+public class KeyEnumDeserializer<K, E extends Enum<E> & KeyEnum<K, E>> implements ObjectReader<E> {
 
     @Override
     public E readObject(JSONReader jsonReader, Type fieldType, Object fieldName, long features) {
-        int key = jsonReader.readInt32Value();
+        Object key = jsonReader.readAny();
         if (fieldType instanceof Class) {
             @SuppressWarnings("unchecked")
-            Class<E> keyEnumClass = (Class<E>) fieldType;
-            return KeyEnum.keyOf(keyEnumClass, key);
+            E e = KeyEnum.keyOf((Class<E>) fieldType, (K) key);
+            return e;
         }
         throw new JSONException("parse key enum " + fieldType.getTypeName() + " error, value : " + key);
     }

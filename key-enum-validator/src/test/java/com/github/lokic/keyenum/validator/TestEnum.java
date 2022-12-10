@@ -2,7 +2,7 @@ package com.github.lokic.keyenum.validator;
 
 import com.github.lokic.keyenum.core.KeyEnum;
 
-public enum TestEnum implements KeyEnum<TestEnum> {
+public enum TestEnum implements KeyEnum<Integer, TestEnum> {
     A(0),
     B(1),
     D(3);
@@ -14,7 +14,7 @@ public enum TestEnum implements KeyEnum<TestEnum> {
     }
 
     @Override
-    public int getKey() {
+    public Integer getKey() {
         return key;
     }
 }

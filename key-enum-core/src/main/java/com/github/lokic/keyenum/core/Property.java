@@ -26,14 +26,14 @@ import java.util.stream.Collectors;
  *             return code;
  *         }
  *
- *         public static final Property<AbEnum, Integer> OF_CODE =  new Property<>(AbEnum.class, AbEnum::getCode);
+ *         public static final Property<Integer, AbEnum> OF_CODE =  new Property<>(AbEnum.class, AbEnum::getCode);
  *     }
  * }</pre>
  *
  * @param <E> 枚举类
  * @param <K> 转换之后的key
  */
-public class Property<E extends Enum<E>, K> {
+public class Property<K, E extends Enum<E>> {
 
     private final Class<E> clazz;
 
